@@ -33,17 +33,45 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['spaceship']._to = room['outside']
+
+#Lè Items
+items = {
+    "space_gargles": Item("Space Gargles", "You'll need these to see through the darkness on land and while you're navigating through space"), 
+    "light_stabber": Item("Light Stabber", "Protect your neck, son!"),
+}
+
+# Adding the items to rooms
+room['spaceship'].add_item(item["space_gargles"])
+room['spaceship'].add_item(item["light_stabber"])
+room['outside'].add_item(item["torch"])
+room['outside'].add_item(item["ring"])
+room['outside'].add_item(item["moon_boots"])
 
 #
 # Main
 #
+def show_welcome_message():
+    welcome_message = "Welcome to Orie's Galaxy Quest"
+    player_name = input("\n What is your name? ")
+    print(welcome_message, player_name)
+
+
 start_quest = True 
 
 
 
 # Make a new player object that is currently in the 'outside' room.
-player_name = input("\nWelcome to Orie's Quest! What is your name?")
 player = Player({player_name}, currentRoom = room['outside'])
+choice_options = {
+    "n": “north”,
+    "t": "teleport to spaceship",
+    "i": "inventory"
+    "s": “south”,
+    "e": “east”,
+    "w": “west”,
+    "q": "quit"
+}
 
 # Write a loop that:
 #
@@ -55,3 +83,10 @@ player = Player({player_name}, currentRoom = room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+    show_welcome_message()
+
+    while start_quest: 
+        
+
